@@ -1,3 +1,9 @@
+'''
+A* implementation
+Author: Walt Li
+References: https://en.wikipedia.org/wiki/A*_search_algorithm
+'''
+
 import sample_input as sample
 
 
@@ -51,7 +57,7 @@ class Astar():
                 return self.construct_path()
             
             # for all neighbors
-            for direction in [(1, 0), (0, 1), (-1, 0), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]:
+            for direction in [(1, 0), (0, 1), (1, 1), (-1, 0), (0, -1), (1, -1), (-1, 1), (-1, -1)]:
                 neigh = (current[0]+direction[0], current[1]+direction[1])
 
                 # check if out of bound or wall
@@ -78,6 +84,7 @@ class Astar():
     def construct_path(self):
         path = []
         current = self.t
+        # tracing back until we get back to starting point
         while current != self.s:
             path.append(current)
             current = self.traceback[current]
